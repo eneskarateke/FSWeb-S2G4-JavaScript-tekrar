@@ -18,7 +18,7 @@ function KareninAlani(kenaruzunlugu){
 }
 
 /* (Oto test yok) Yukarıdaki KareninAlani fonksiyonunu kenar uzunluğu = 10 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
-
+console.log(KareninAlani(10));
 
 
 /* 	GÖREV 1:  
@@ -29,13 +29,13 @@ function KareninAlani(kenaruzunlugu){
 			4. Hesaplanan çemberin çevresi döndürülecektir.
 		*/
 
-function CemberinCevresi(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinCevresi(r){
+	return 2 * pi * r;
 }
 
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
-
+console.log(CemberinCevresi(5))
 
 
 
@@ -47,17 +47,18 @@ function CemberinCevresi(/* kodlar buraya */){
 			4. Hesaplanan çemberin alanı döndürülecektir.
 		*/
 		
-function CemberinAlani(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinAlani(r,piSayisi){
+	return piSayisi* Math.pow(r,2)
 }
 
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
-
+console.log(CemberinAlani(15,pi))
 
 
 /* 	GÖREV 3:
-		- Sayfanın en üstünde global değişken olarak tanımlanmış bir sayilar dizisi bulunmaktadır. Bu dizi içinde 0 ile 1000 arasında rasgele oluşturulmuş tam sayılar ve ondalıklı sayılar bulunmaktadır. Bu diziyi kullanarak aşağıdakileri uygulayın:
+		- Sayfanın en üstünde global değişken olarak tanımlanmış bir sayilar dizisi bulunmaktadır. Bu dizi içinde 0 ile 1000 arasında rasgele oluşturulmuş tam sayılar ve ondalıklı 
+		sayılar bulunmaktadır. Bu diziyi kullanarak aşağıdakileri uygulayın:
 			3a. enbuyuk ve enkucuk isminde 2 adet değişken tanımlayın ve sayilar dizisindeki en küçük sayı ile en büyük sayıyı bu değişkenlere atayın. (for döngüsü kullanın)
 			3b. `ucetambolunenler` adında bir dizi tanımlayın ve bu diziye sayilar dizisindeki 3'ün tam katı olan sayıları atayın (.forEach metodunu kullanın)
 			3c. `ucetambolunenler` dizisindeki sayıların toplamını .reduce metoduyla bulup, sonucu `ucebolunenlerintoplami` değişkenine yazdırın (.reduce metodunu kullanın)
@@ -70,49 +71,120 @@ function CemberinAlani(/* kodlar buraya */){
 	
 	
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
-
+console.log(sayilar.length);
 
 
 	var ucetambolunenler, enkucuk, enbuyuk, ucebolunenlerintoplami, besyuzdenkucuksayilar, siralisayilar, tekraredensayilar;
 	
-	//3a çözümü
+	// 3a çözümü
 
-	/* kodlar buraya */
+	// Alternatif çözüm
+
+	// enbuyuk = sayilar.reduce((biggest, sayi) => sayi > biggest ? sayi: biggest,0)
+	// enkucuk = sayilar.reduce((smallest, sayi) => sayi < smallest ? sayi: smallest, 1000)
+
 	
+	 enbuyuk = 0;
+	 enkucuk = 99999;
+
 	
-	
+
+	for (let i=0; i<sayilar.length; i++) {
+		if (sayilar[i]>enbuyuk) {
+			enbuyuk = sayilar[i]
+		} 
+	}
+
+	for (let i=0; i<sayilar.length; i++) {
+		if (sayilar[i]<enkucuk) {
+			enkucuk = sayilar[i]
+		} 
+	}
+	console.log(enbuyuk);
+	console.log(enkucuk);
+
+
+
+	// 3b. `ucetambolunenler` adında bir dizi tanımlayın ve bu diziye sayilar dizisindeki 3'ün tam katı olan sayıları atayın (.forEach metodunu kullanın)
 	// 3b çözümü:
+	// alternatifçözüm
+    // ucetambolunenler =sayilar.filter((sayi)=>sayi%3 === 0);
+	// console.log(ucetambolunenler)
 
-	/* kodlar buraya */
+    ucetambolunenler = [];
+    // 3b çözümü:
+    sayilar.forEach((sayi) => (sayi % 3 == 0 ? ucetambolunenler.push(sayi) : null));
+  
+    console.log("ucetambolunenler: ", ucetambolunenler);
+
+
+
+     // alternatif çözüm, var ucetamboluneneleri islmek gerekiyor.
+	// let ucetambolunenler = [];
+	//  for (let i=0; i<sayilar.length; i++) {
+	// 	if (sayilar[i] % 3 === 0) {
+	// 		ucetambolunenler.push(sayilar[i])
+	// 	} 
+	// }
 		
-		
-		
+	// 3c. `ucetambolunenler` dizisindeki sayıların toplamını .reduce metoduyla bulup, sonucu `ucebolunenlerintoplami` değişkenine yazdırın (.reduce metodunu kullanın)
+
 	//3c çözümü:
 	
 	/* kodlar buraya */
-
+     ucebolunenlerintoplami = ucetambolunenler.reduce((toplam, sayi)=> toplam + sayi,0)
 	
+	// 3d`besyuzdenkucuksayilar` adında bir dizi oluşturarak, sayilar dizisinin içindeki 500'den küçük sayıları bu diziye atayın (.filter metodunu kullanın)
+	//3d çözümü 
 	
-	//3d çözümü
-	
-	/* kodlar buraya */
+	 besyuzdenkucuksayilar = sayilar.filter(sayi => sayi < 500);
 
 
-
+	// 3e. besyuzdenkucuksayilar dizisindeki sayıları küçükten büyüğe sıralayıp `siralisayilar` adındaki bir diziye aktarın (.sort metodunu kullanın)
+// 
 	//3e çözümü
 
-	/* kodlar buraya */
-	
-	
+	siralisayilar = besyuzdenkucuksayilar.sort((a, b) => a - b);
+	console.log("Sıralı Sayilar:", siralisayilar);
+
+	// 3f. `tekraredensayilar` adında bir dizi oluşturun. sayilar dizisi içerisindeki bazı sayılar birden fazla kere yazılmış. sayilar dizisi içerisinde birden fazla kez yazılmış 
+	// sayıları tespit ederek kaç kere tekrar edildiğini belirten bir string oluşturulup `tekraredensayilar` dizisine aktarılmasını istiyoruz. Örnek 
+	// string: "{sayı} sayısı {tekrarSayisi} kere tekrar edilmiştir"
+
 	//3f çözümü
-	
-	/* kodlar buraya */
+let tekraredensayilarDizisi=[];
+tekraredensayilar = [];
+let counts = {};
+tekraredensayilarDizisi = sayilar.forEach(
+  (x) => (counts[x] = (counts[x] || 0) + 1)
+);
+const countsDiziler = Object.entries(counts);
 
-
-
-
-	
+let filtrelenmisDizi = countsDiziler.filter((sayi) => sayi[1] > 1);
+for (let i = 0; i < filtrelenmisDizi.length; i++) {
+  tekraredensayilar.push(
+    `${filtrelenmisDizi[i][0]} sayısı ${filtrelenmisDizi[i][1]} kere tekrar edilmiştir`
+  );
+}
+console.log("görev 3f", tekraredensayilar);
+	/*
+      tekraredensayilar = [];
+	for (let i = 0; i < sayilar.length; i++) {
+		let sayi = sayilar[i];
+		let tekrarSayisi = 0;
 		
+	for (let j = 0; j < sayilar.length; j++) {
+		if (sayilar[j] === sayi) {
+        tekrarSayisi++;
+	}
+}
+
+  if (tekrarSayisi > 1 && !tekraredensayilar.includes(sayi)) {
+    tekraredensayilar.push(`${sayi} sayısı ${tekrarSayisi} kere tekrar edilmiştir`);
+  }
+}
+console.log(tekraredensayilar);
+
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 function sa(){
